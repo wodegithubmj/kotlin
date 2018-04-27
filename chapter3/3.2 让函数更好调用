@@ -1,0 +1,5 @@
+在Kotlin中，可以显示的标明函数参数的名称，也可以在声明函数的时候指定参数的默认值。
+
+Kotlin中的函数和属性可以不依赖类而存在，函数和属性都可以定义在文件的顶层。
+
+Koltin中的“const val”等同于Java中的“public static final”。
