@@ -1,0 +1,19 @@
+扩展函数是一个类的成员函数，但定义在类的外面。例如：
+
+package strings
+
+fun String.lastChar():Char=this.get(this.length-1) 
+
+大写的“String”表示接收者类型，“this”表示接收者对象，可以省略。接收者类型是由扩展函数定义的，接收者对象是该类型的一个实例。
+
+Kotlin允许用导入类一样的语法来导入单个的函数：
+
+import strings.lastChar 或者 import strings.*
+
+可以使用关键字 as 来修改导入的类或者函数的名称：
+
+import string.lastChar as last
+
+val c = "Kotlin".last()
+
+这样可以避免重名的问题。
