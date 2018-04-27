@@ -21,3 +21,11 @@ val c = "Kotlin".last()
 由于扩展函数的静态熟悉，它不可以被子类重写，这与一般的面向对象的多态属性不同。
 
 若一个类的成员函数和扩展函数具有相同的签名，成员函数往往被优先使用。
+
+声明一个可以变的扩展属性。
+
+var StringBuilder.lastChar:Char
+    get() = get(length-1) //显示声明getter属性
+    set(value:Char) {
+      this.setCharAt(length-1,value) //显示声明setter属性
+    }
