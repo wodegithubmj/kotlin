@@ -17,3 +17,5 @@ import string.lastChar as last
 val c = "Kotlin".last()
 
 这样可以避免重名的问题。
+
+由于扩展函数的静态熟悉，它不可以被子类重写，这与一般的面向对象的多态属性不同。
