@@ -8,4 +8,13 @@
 
 可以使用 mapOf 函数创建map：
 
-val map = mapOf(1 to "one", 7 to "seven", 53 to "fifty-three") // to 不是内置的结果，而是一种特殊的函数调用，被称为 中缀调用。ccccccccccccccccccccccccc
+val map = mapOf(1 to "one", 7 to "seven", 53 to "fifty-three") // to 不是内置的结果，而是一种特殊的函数调用，被称为 中缀调用。
+
+1.to("one") //一般 to 函数的调用。
+1 to "one"  //使用中缀符号调用 to 函数。
+
+使用 infix 修饰一个函数就可以使用中缀符号调用它。
+
+infix fun Any.to(other: Any) = Pair(this, other)
+
+val (number, name) = 1 to "one"
