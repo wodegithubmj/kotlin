@@ -1,0 +1,49 @@
+5.1 Lambda表达式和成员引用
+    
+    5.1.1 Lambda简介：作为函数参数的代码块
+          在你的代码中存储和传递一小段行为是常有的。在老版本Java中，可以使用匿名内部类来实现，但是太罗嗦了。
+          函数式编程提供了另一种解决问题的方法：把函数当作值来对待。可以直接传递函数，而不再需要先声明一个类再传递这个类的实例。使用lamda表达式以后，代码
+          更简洁。可以高效地直接传递代码块作为函数参数。
+          
+    5.1.2 Lambda和集合
+          良好的编程风格的主要原则之一是避免代码中的任何重复。在Java编写代码，很可能已经养成了什么都自己实现的习惯。在Kotlin中要纠正。
+          
+          例子：Person类包含人的名字和年龄。
+          data class Person(val name: String, val age: Int)
+          若需要找到列表中年龄最大的人，不用lambda而是手动实现这个功能会很麻烦。Kotlin有更好的办法，使用库函数。
+          
+          val people = listOf(Person("Alice",29), Person("Bob",31))
+          println(people.maxBy{it.age})
+          
+          Person(name=Bob, age=31)
+          
+          maxBy函数可以在任何集合上调用，且只需要一个实参：一个函数，指定比较哪个值来找到最大元素。花括号中的｛it.age｝就是实现了这个逻辑的lambda。
+          它接收了一个集合中的元素作为实参（使用it引用它）并且返回用来比较的值。
+          
+          如果lamda刚好是函数或者属性的委托，可以用成员引用替换。
+          people.maxBy(Person::age)
+          
+    5.1.3 Lambda表达式的语法
+          一个lambda把一小段行为进行编码，你能把它当作值到处传递。它可以被独立声明并存储到一个变量中。但更常见的还是直接声明它并传递给函数。
+          {x:Int, y:Int -> x+y}
+          
+          可以把lambda表达式存储在变量中，把这个变量当作普通函数对待。
+          val sum = {x:Int, y:Int -> x+y}
+          println(sum(1,2))
+          
+          上面按年龄排序的代码可以写成
+          people.maxBy { p:Person->p.age }
+          甚至可以写成
+          people.maxBy { p->p.age } 或者 people.maxBy { it.age }
+          
+    5.1.4 在作用域中访问变量
+          在函数内声明匿名内部类时，可以在匿名内部类中引用这个函数的参数和局部变量。若在函数内部使用lambda，也可以在在lambda中访问函数的参数和在其之
+          前定义的局部变量。
+          Kotlin和Java显著的不同是Kotlin中不会仅限于访问final变量，在lambda内部也可以修改这些变量。从lambda内部访问外部变量，称之为被lambda捕捉。
+          
+          重要的是，若lambda被用于处理时间处理器或者在其他异步执行的情况，怼局部变量的修改只有在lambda执行时发生。比如点击事件中。
+          
+    5.1.5 成员引用
+          若把函数转换成一个值，就可以直接传递它。使用 ::运算符来转换。
+          val getAge = Person::age 这种表达式称为成员引用。
+     
