@@ -1,0 +1,27 @@
+5.2 集合的函数式API
+    大多数操作集合的任务都可以通过库函数来完成。
+    
+    5.2.1 基础：filter和map
+          filter函数遍历集合并选出应用给定lambda后会返回true的那些元素。
+          filter函数可以从集合中移除你不想要的元素，但不会改变这些元素，元素的变换是map的用武之地。
+          
+          map函数对集合中的每个元素应用给定的函数并把结构手机到一个新集合。
+          
+    5.2.2 “all”、“any”、“count”、“find”：对集合应用判断式
+          all函数可以判断是否是所有元素都满足判断式
+          any函数检查集合中是否至少存在一个匹配的元素
+          count函数计算有多少个元素满足判断式
+          find函数找到一个满足判断式的元素，如果有多个满足就返回第一个。
+          
+    5.2.3 groupBy：把列表转换成分组的map
+          假设你需要把所有元素按不同特征划分成不同的分组，groupBy函数可以做到。每个新的分组都存储在一个列表中。
+          
+    5.2.4 flatMap和flatten：处理嵌套集合中的元素
+          假设有一堆藏书，使用Book类表示：
+          class Book(val title:String, val authors: List<String>)
+          每本书可能有多个作者，可以统计出所有作何的set：
+          books.flatMap { it.authors }.toSet()
+          val strings = listof("abc", "def")
+          println(string.flatMap { it.toList() })
+          [a,b,c,d,e,f] //这个结果就很好地展示了平铺的意思。
+          
