@@ -1,0 +1,13 @@
+5.3 惰性集合操作：序列
+
+    例子：people.map(Person::name).filter　{ it.startsWith }
+    filter和map都会返回一个列表，如果有一百万个元素，上面这种写法就会十分低效。
+    为了提高效率，可以把操作变成使用序列，而不是直接使用集合：
+    people.asSequence().map(Person::name).filter { it.startsWith("A") }.toList()
+    
+    5.3.1 执行序列操作：中间和末端操作
+          上面的例子中map()函数之后toList()之前的都是中间操作，toList()是末端操作。中间操作始终都是惰性的。
+          
+    5.3.2 创建序列
+          除了asSequence()还可以用generateSequence函数
+    
