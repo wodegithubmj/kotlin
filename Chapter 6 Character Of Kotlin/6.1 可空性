@@ -19,6 +19,29 @@
           如果值为null，可显示抛出异常
 
     6.1.7 let函数
+          let函数让处理可空表达式更容易
+          email?.let { email->sendEmailTo(email) } 或者 email?.let{ sendEmailTo(it) }
+          
+    6.1.8 延迟初始化的属性
+          Kotlin通常要求在构造方法中初始化所有属性。若某个属性是非空类型，就必须提供非空初始化值值，否则必须使用可空类型，这样做，每次访问都要null检查
+          或者!!运算符。
+          为了避免这种麻烦，可以使用lateinit修饰符。
+          
+          
+    6.1.9 可空类型的扩展
+          为可空类型定义扩展函数是一种更强大的处理null值的方式。可以允许接受者为null的调用，并在该函数中处理null。普通成员方法的调用是通过对象实例来分
+          发的，做不到这一点。
+          比如一个String?类型可以直接调用isEmptyOrNull和isNullOrBlank。
+          在Java中this关键字永远非空，但在Kotlin中this可以为空。
+          
+    6.1.10 类型参数的可空性
+           Kotlin中所有泛型类和泛型函数的类型参数默认都是可空的。
+           比如， fun <T> printHashCode(t:T)中的T就是可空的，它被类型推导为Any?。
+           fun <T: Any> printHashCode(t:T)中的T是不可空的。
+           
+    6.1.11 可空性和Java
+           
+          
 
 
 
